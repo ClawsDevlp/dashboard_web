@@ -7,4 +7,10 @@ export default {
     } */
     count: 0,
     trees: []
+    /*,
+    locationData : {
+        locations : [],
+        locationsCount: []
+    }
+    */
 }

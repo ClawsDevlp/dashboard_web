@@ -10,7 +10,7 @@ export default (state, actions) =>
         h(
             'p',
             { oncreate: () => actions.getTreesFromApi() },
-            'Liste d\'arbres :' //+ CleanTree(state.trees)
+            'Liste d\'arbres :' + state.trees.map( x => x.objectid)
         ),
         /* h('p', {}, 'count :' + state.count),
         Button({ text: '-', onClick: actions.decrement }),
