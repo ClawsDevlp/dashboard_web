@@ -10,7 +10,12 @@ export default (state, actions) =>
         h(
             'p',
             { oncreate: () => actions.getTreesFromApi() },
-            'Liste d\'arbres :' + state.trees.map( x => x.objectid)
+            //'Liste d\'arbres :' + state.trees.map( x => x.objectid)
+        ),
+        h(
+            'p',
+            //{ oncreate: () => actions.getTreeByDistrictArray(state.trees) },
+            //'Liste darbres :' , state.treesDistrict
         ),
         /* h('p', {}, 'count :' + state.count),
         Button({ text: '-', onClick: actions.decrement }),

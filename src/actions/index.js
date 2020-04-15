@@ -23,13 +23,22 @@ export default {
         })
             .catch(error => { console.log(error) })
     },
-    setTreeArray: rawtrees => state => {
+    setTreeArray: rawtrees => (state, actions) => {
         const onlyFields = rawtrees.map(x => x.fields)
         console.log("Only fields : " , onlyFields)
-        
+
+        const district = actions.setTreeByDistrictArray(onlyFields)
+
         //return {...state, trees: cleanTree}
         console.log("setTreeArray function")
-        return {...state, trees: onlyFields}
+        return {...state, treesDistrict: district, trees: onlyFields}
+    },
+    // set treesDistrict with trees
+    setTreeByDistrictArray: trees => state => {
+        const treesByDistrict = trees.map(x => x.arrondissement)
+        console.log("Trees arrondissement : " , treesByDistrict)
+
+        return {...state, treesDistrict: treesByDistrict}
     }
     /*
     ,
