@@ -3,7 +3,7 @@ import { h } from 'hyperapp'
 import Chart from 'chart.js'
 
 // basic componant with props
-export default (props) =>
+/* export default (props) =>
     h('div', {}, [
         h('canvas', {
             oncreate: (element) => {
@@ -26,4 +26,4 @@ export default (props) =>
             },
             style: 'background-color: #fff;'
         })
-    ])
+    ]) */

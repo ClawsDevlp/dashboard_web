@@ -1,17 +1,18 @@
 import { h } from 'hyperapp'
 
-import Button from '../components/Button'
-import BarChart from '../components/BarChart'
+// import Button from '../components/Button'
+// import BarChart from '../components/BarChart'
+import CleanTree from '../components/CleanTree'
 
 export default (state, actions) =>
     h('div', {}, [
-        h('h1', {}, 'HyperApp Template'),
+        h('h1', {}, 'Essai affichage infos API'),
         h(
             'p',
-            { oncreate: () => actions.getIpFromApi() },
-            'ton ip est :' + state.ip
+            { oncreate: () => actions.getTreesFromApi() },
+            'Liste d\'arbres :' + state.trees.map( x => x.objectid)
         ),
-        h('p', {}, 'count :' + state.count),
+        /* h('p', {}, 'count :' + state.count),
         Button({ text: '-', onClick: actions.decrement }),
         Button({ text: '+', onClick: actions.increment }),
         BarChart({
@@ -38,5 +39,5 @@ export default (state, actions) =>
                     }
                 })
             }
-        })
+        }) */
     ])
