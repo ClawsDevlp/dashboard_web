@@ -1,28 +1,46 @@
 import axios from 'axios'
 
 export default {
-    increment: () => state => {
+    /* increment: () => state => {
         console.log(state)
         return { ...state, count: state.count + 1 } // on retourne le nouveau state avec notre compteur mis à jour
-    },
-    decrement: () => state => {
+    }, */
+    /* decrement: () => state => {
         console.log(state)
         return { ...state, count: state.count - 1 }
-    },
+    }, */
 
-    setIp: ip => state => {
+    /* setIp: ip => state => {
         return { ...state, ip: ip } // on retourne le nouveau state en modifiant l'adresse ip dans notre state
-    },
-
-    getIpFromApi: () => (state, actions) => {
-        const request = axios.get('https://api.ipify.org?format=json')
-
+    }, */
+    getTreesFromApi: () => (state, actions) => {
+        const request = axios.get('https://opendata.paris.fr/api/records/1.0/search/?dataset=arbresremarquablesparis&facet=genre&facet=espece&facet=dateplantation')
+        console.log("getTreesFromApi function")
         request.then(response => {
-            return actions.setIp(response.data.ip)
+            console.log(response.data.records)
+            return actions.setTreeArray(response.data.records)
         })
             .catch(error => { console.log(error) })
     },
-    getEspaceVertsDataFromApi: ({count, callBack}) => (state, actions) => {
+    setTreeArray: rawtrees => state => {
+        const onlyFields = rawtrees.map(x => x.fields)
+        // console.log("Only fields : " + rawtrees[0].fields.id)
+        const cleanTree = {
+            id: onlyFields.objectid, 
+            adresse: onlyFields.adresse,
+            arrondissement:onlyFields.arrondissement,
+            circonference:onlyFields.circonferenceencm,
+            dateplantation:onlyFields.dateplantation,
+            espece:onlyFields.espece,
+            genre:onlyFields.genre,
+            hauteur:onlyFields.hauteurenm
+        }
+        console.log("Clean trees : " + cleanTree)
+        //return {...state, trees: cleanTree}
+        console.log("setTreeArray function")
+        return {...state, trees: rawtrees}
+    }
+    /* getEspaceVertsDataFromApi: ({count, callBack}) => (state, actions) => {
         const request = axios.get('https://opendata.paris.fr/api/records/1.0/search/?dataset=espaces_verts&facet=categorie&rows=' + (count || 10))
         request
             .then(response => {
@@ -49,5 +67,5 @@ export default {
                 categoriesCount:  Object.values(categoriesCount) // et le nombre d'element dans chaque categories
             }
         }
-    }
+    } */
 }

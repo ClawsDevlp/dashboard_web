@@ -1,7 +1,7 @@
 import { h } from 'hyperapp'
 import TodoItem from './TodoItem'
 
-export default (props) =>
+/* export default (props) =>
   h('div', { class: 'todo-list__root' }, [
     h('ul', {},
       // eslint-disable-next-line fp/no-mutating-methods
@@ -16,4 +16,4 @@ export default (props) =>
           })
         ]))
     )
-  ])
+  ]) */
