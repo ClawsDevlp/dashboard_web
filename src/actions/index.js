@@ -18,30 +18,39 @@ export default {
         const request = axios.get('https://opendata.paris.fr/api/records/1.0/search/?dataset=arbresremarquablesparis&facet=genre&facet=espece&facet=dateplantation&rows=182')
         console.log("getTreesFromApi function")
         request.then(response => {
-            console.log(response.data.records)
             return actions.setTreeArray(response.data.records)
         })
             .catch(error => { console.log(error) })
     },
     setTreeArray: rawtrees => (state, actions) => {
         const onlyFields = rawtrees.map(x => x.fields)
-        console.log("Only fields : " , onlyFields)
 
         const district = actions.setTreeByDistrictArray(onlyFields)
 
-        //return {...state, trees: cleanTree}
-        console.log("setTreeArray function")
-        return {...state, treesDistrict: district, trees: onlyFields}
+        return {...state, trees: onlyFields, treesDistrict: district}
     },
     // set treesDistrict with trees
     setTreeByDistrictArray: trees => state => {
         const treesByDistrict = trees.map(x => x.arrondissement)
-        console.log("Trees arrondissement : " , treesByDistrict)
 
-        return {...state, treesDistrict: treesByDistrict}
+        // Get occurences of trees by district
+        const occTreesByDistrict = treesByDistrict.reduce(function(obj, item) {
+            obj[item] = (obj[item] || 0) + 1
+            return obj
+        }, {})
+
+        // Get two arrays : district names and number of trees in these districts
+        const nbTrees = []
+        const distictName = []
+        for (let [key, value] of Object.entries(occTreesByDistrict)) {
+            //console.log(key, value)
+            nbTrees.push(value)
+            distictName.push(key)
+        }        
+
+        return { nbTrees, distictName }
     }
     /*
-    ,
     getLocationTreeDataFromApi: ({count, callBack}) => (state, actions) => {
         const request = axios.get('https://opendata.paris.fr/api/records/1.0/search/?dataset=arbresremarquablesparis&facet=arrondissement&rows=' + (count || 10))
         request

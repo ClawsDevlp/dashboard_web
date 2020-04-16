@@ -1,8 +1,7 @@
 import { h } from 'hyperapp'
 
 // import Button from '../components/Button'
-// import BarChart from '../components/BarChart'
-import CleanTree from '../components/CleanTree'
+import BarChart from '../components/BarChart'
 
 export default (state, actions) =>
     h('div', {}, [
@@ -10,23 +9,23 @@ export default (state, actions) =>
         h(
             'p',
             { oncreate: () => actions.getTreesFromApi() },
-            //'Liste d\'arbres :' + state.trees.map( x => x.objectid)
-        ),
-        h(
-            'p',
-            //{ oncreate: () => actions.getTreeByDistrictArray(state.trees) },
-            //'Liste darbres :' , state.treesDistrict
+            //'Liste d\'arbres :' + state.trees.map( x => x.objectid),
+            console.log("D2 : " , state.treesDistrict.nbTrees),  
+            //console.log("VALUES D2: " , Object.values(state.treesDistrict.treesDistrict),  
+            'Liste district arbres :' + state.treesDistrict.nbTrees
         ),
         /* h('p', {}, 'count :' + state.count),
         Button({ text: '-', onClick: actions.decrement }),
         Button({ text: '+', onClick: actions.increment }),
+        */
         BarChart({
-            labels: ['React', 'Angular', 'Vue', 'Hyperapp', 'Omi'],
-            data: [135850, 52122, 148825, 16939, 9763],
+            labels: state.treesDistrict.nameDistrict,
+            data: state.treesDistrict.nbTrees,
             title: 'exemple de BarChart',
             width: 800,
             height: 400
         }),
+        /*
         BarChart({
             labels: [],
             data:  [],
