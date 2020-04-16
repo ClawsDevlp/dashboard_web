@@ -1,4 +1,5 @@
 import { h } from 'hyperapp'
+import OneLine from '../components/oneLineRecap'
 
 export default (array) => 
   h('table', null, [
@@ -10,5 +11,5 @@ export default (array) =>
         h('th', {scope: "col"}, 'Hauteur (en m)'),
         h('th', {scope: "col"}, 'Date')
     ]),
-    
+      OneLine(array)
   ])

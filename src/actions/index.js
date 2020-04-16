@@ -28,6 +28,7 @@ export default {
         console.log("/**** setTreeArray function ****/")
         const onlyFields = rawtrees.map(x => x.fields)
         const recap = actions.setRecapArray(onlyFields)
+        //console.log(onlyFields)
         return {...state, trees: onlyFields, recapArray: recap}
     },
     setRecapArray : (tree) => () => {
@@ -41,7 +42,7 @@ export default {
             height: newArray.hauteurenm,
             date: newArray.dateplantation
         }))
-        console.log("recap array : ", recap)
+        // console.log("recap array : ", recap)
         return recap
     }
     /*
