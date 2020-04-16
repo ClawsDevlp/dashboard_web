@@ -3,15 +3,27 @@ import { h } from 'hyperapp'
 // import Button from '../components/Button'
 // import BarChart from '../components/BarChart'
 import CleanTree from '../components/CleanTree'
+import TopCircumference from '../components/TopCircumference'
 
 export default (state, actions) =>
     h('div', {}, [
         h('h1', {}, 'Essai affichage infos API'),
         h(
             'p',
-            { oncreate: () => actions.getTreesFromApi() },
-            'Liste d\'arbres :' + state.trees.map( x => x.objectid)
-        ),
+            { oncreate: () => actions.getTreesFromApi()},
+            'nombre centenaire : ' + state.numberCentree,
+            TopCircumference({
+                trees: state.trees,
+                //getAge: (date) => () => actions.calculateAge(date)
+            })
+            //'Liste d\'arbres :' + state.trees.map( x => x.circonferenceencm)
+            // arbres triés par ordre de circonférence
+            //'Liste d\'arbres :' + state.trees.map( x => x.circonferenceencm).sort((a, b) => b - a).slice(0,3),
+         
+        )
+        /*
+       
+        
         /* h('p', {}, 'count :' + state.count),
         Button({ text: '-', onClick: actions.decrement }),
         Button({ text: '+', onClick: actions.increment }),

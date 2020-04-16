@@ -23,14 +23,53 @@ export default {
         })
             .catch(error => { console.log(error) })
     },
-    setTreeArray: rawtrees => state => {
+
+    calculateAge: (dateplantation) => {
+        const ageDifNow = Date.now() - dateplantation
+        const ageDate = new Date(ageDifNow) // miliseconds from epoch
+        return Math.abs(ageDate.getUTCFullYear() - 1970)
+    },
+    
+    setTreeArray: rawtrees => (state,actions) => {
         const onlyFields = rawtrees.map(x => x.fields)
         console.log("Only fields : " , onlyFields)
         
+        onlyFields.forEach(
+            
+            (element) => {
+                //console.log(element.dateplantation) 
+                element.age = actions.calculateAge(new Date(element.dateplantation).getTime())}
+            )
+
+        const nbCentree = onlyFields.filter(i => i.age >= 100).length
+        const nbDeuxMille = onlyFields.filter(i => i.dateplantation >= "2000-01-01T00:09:21+00:00").length
+        console.log(" nb 2000 : ", nbDeuxMille)
+        //console.log("Only fields 2 : " , onlyFields)
+
         //return {...state, trees: cleanTree}
         console.log("setTreeArray function")
-        return {...state, trees: onlyFields}
+        return {...state, trees: onlyFields, numberCentree: nbCentree}
     }
+    
+ 
+
+    //new Date(a.dateplantation).getTime()  - new Date(b.dateplantation).getTime()
+    /*
+    ,
+    setTopByCircumference: trees => state =>
+    {
+        const TopCircumference = trees.sort((a, b) => ( b.circonferenceencm - a.circonferenceencm )).slice(0,3)
+        console.log("on teste : " , TopCircumference)
+        //console.log("premier top", TopCircumference[0].espece)
+        for (let tree in TopCircumference) {
+            console.log( TopCircumference[tree].circonferenceencm)
+            console.log( TopCircumference[tree].espece)
+          }
+
+        return {TopCircumference}
+
+    }
+    */
     /*
     ,
     getLocationTreeDataFromApi: ({count, callBack}) => (state, actions) => {

@@ -6,7 +6,8 @@ export default {
         categoriesCount: []
     } */
     count: 0,
-    trees: []
+    trees: [],
+    numberCentree: 0
     /*,
     locationData : {
         locations : [],
