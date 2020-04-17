@@ -37,17 +37,34 @@ export default {
             district: newArray.arrondissement, 
             circumference: newArray.circonferenceencm,
             height: newArray.hauteurenm,
-            date: newArray.dateplantation
+            date: newArray.dateplantation.slice(0, 4)
         }))
         // console.log("recap array : ", recap)
         return recap
     },
     organiseBySpecies: () => (state) => {
-        console.log("/**** organiseBySpecies function ****/")
-        
+        const sortedRecapArray = state.recapArray.sort((a, b) => a.species.localeCompare(b.species));
+        return {...state, recapArray: sortedRecapArray}
     },
-    organiseByAdress: () => () => {
-        console.log("/**** organiseByAdress function ****/")
+    organiseByAdress: () => (state) => {
+        const sortedRecapArray = state.recapArray.sort((a, b) => a.adress.localeCompare(b.adress));
+        return {...state, recapArray: sortedRecapArray}
+    },
+    organiseByDistrict: () => (state) => {
+        const sortedRecapArray = state.recapArray.sort((a, b) => a.district.localeCompare(b.district));
+        return {...state, recapArray: sortedRecapArray}
+    },
+    organiseByCirc: () => (state) => {
+        const sortedRecapArray = state.recapArray.sort((a, b) => a.circumference - b.circumference);
+        return {...state, recapArray: sortedRecapArray}
+    },
+    organiseByHeight: () => (state) => {
+        const sortedRecapArray = state.recapArray.sort((a, b) => a.height - b.height);
+        return {...state, recapArray: sortedRecapArray}
+    },
+    organiseByDate: () => (state) => {
+        const sortedRecapArray = state.recapArray.sort((a, b) => a.date - b.date);
+        return {...state, recapArray: sortedRecapArray}
     }
     /*
     ,

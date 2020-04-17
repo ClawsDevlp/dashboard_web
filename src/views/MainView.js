@@ -6,8 +6,12 @@ import htmlArray from '../components/recapArrayHtml'
 
 export default (state, actions) =>
     h('div', {oncreate: () => actions.getTreesFromApi()}, [
-        h('h1', {}, 'Un petit récapitulatif'),
-        htmlArray(state.recapArray, actions)
+        h('div', {class: "container array"}, [
+            h('h3', {}, [
+                h('span', {}, '📖 DATA'),
+                'Un petit récapitulatif 👀']),
+            htmlArray(state.recapArray, actions)
+        ])
         /* h('p', {}, 'count :' + state.count),
         Button({ text: '-', onClick: actions.decrement }),
         Button({ text: '+', onClick: actions.increment }),
