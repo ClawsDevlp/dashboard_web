@@ -1,5 +1,6 @@
 import { h } from 'hyperapp'
 
+// Creates the differents line of the array depending on the array passed by argument
 export default (elements) => 
     elements.map(
         element => (

@@ -1,6 +1,6 @@
 import { h } from 'hyperapp'
 import OneLine from '../components/oneLineRecap'
-
+// Creating only the structure of the array
 export default (array, actions) => 
   h('table', {id: 'small_recap'}, [
     h('tr', null, [
@@ -11,5 +11,5 @@ export default (array, actions) =>
         h('th', {scope: "col", onclick: actions.organiseByHeight}, 'Hauteur (en m)'),
         h('th', {scope: "col", onclick: actions.organiseByNumber}, 'Année de plantation')
     ]),
-      OneLine(array)
+      OneLine(array) // Calling here the file that will create all the lines
   ])
