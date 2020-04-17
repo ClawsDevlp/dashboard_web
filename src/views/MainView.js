@@ -5,26 +5,52 @@ import { h } from 'hyperapp'
 import CleanTree from '../components/CleanTree'
 import TopCircumference from '../components/TopCircumference'
 import TopAge from '../components/TopAge'
+import TopHeight from '../components/TopHeight'
 
 export default (state, actions) =>
     h('div', {}, [
-        h('h1', {}, 'Essai affichage infos API'),
+        h('h1', {class : 'titre'}, [
+            h('span', null, 'DATAVISUALISATION  '),
+            h('p', null, 'Les arbres remarquables à Paris  🌱')
+        ]),
         h(
             'div',
-            { oncreate: () => actions.getTreesFromApi()},
+            { oncreate: () => actions.getTreesFromApi(), class : 'wrapper'},
             [
                 h('p', null,  '' + state.numberCentree + ' arbres de plus de 100 ans '),
                
                 '' + state.numberDeuxMille + ' arbres remarquables plantés depuis 2000 ',
+                //'Liste district arbres :' + state.treesDistrict.nbTrees.slice(0,3),
                 '' + state.trees.length + ' arbres remarquables ',
-                
+            TopAge({
+                trees: state.trees
+            }),  
             TopCircumference({
                 trees: state.trees
                 //getAge: (date) => () => actions.calculateAge(date)
             }),
-            TopAge({
+            TopHeight({
                 trees: state.trees
-            })
+            }),
+            h('div', {class : 'container infos'}, [
+                h('h3', null, [
+                    h('span', null, ' 📌  INFOS '),
+                    'Les chiffres impressionnants 😱'
+                ]),
+                h('div', {class: 'inside-wrapper'}, [
+                    h('div', null, [
+                        h('p', null,  state.trees.length ),
+                        h('p', null, ' arbres remarquables ')
+                    ]),
+                    h('div', null, [
+                        h('p', null,  state.numberDeuxMille ),
+                        h('p', null, ' arbres remarquables plantés depuis 2000 ')
+                    ])
+    
+                ])
+
+            ])
+            
             ]
             
             //'Liste d\'arbres :' + state.trees.map( x => x.circonferenceencm)

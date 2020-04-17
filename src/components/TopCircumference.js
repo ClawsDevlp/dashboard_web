@@ -3,7 +3,7 @@ import CircumferenceList from './CircumferenceList'
 
 export default (props) =>
     h( 'div', { class : 'container top3'}, [
-        h( 'h3', null, [h('span', null, '🏆 TOP 3'), ' Les arrondissements les plus vert 🌿']),
+        h( 'h3', null, [h('span', null, '🏆 TOP 3'), ' Les arbres les plus gros 🏋️‍♀️']),
         h('ul',  {} , 
             props.trees
             .sort((a, b) => ( b.circonferenceencm - a.circonferenceencm ))

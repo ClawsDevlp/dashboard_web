@@ -43,14 +43,14 @@ export default {
 
         const nbCentree = onlyFields.filter(i => i.age >= 100).length
         const nbDeuxMille = onlyFields.filter(i => i.dateplantation >= "2000-01-01T00:09:21+00:00").length
-        //console.log(" nb 2000 : ", nbDeuxMille)
-        //console.log("Only fields 2 : " , onlyFields)
+        
 
         //return {...state, trees: cleanTree}
         console.log("setTreeArray function")
         return {...state, trees: onlyFields, numberCentree: nbCentree, numberDeuxMille : nbDeuxMille}
-    }
+    },
     
+ 
  
 
     //new Date(a.dateplantation).getTime()  - new Date(b.dateplantation).getTime()
