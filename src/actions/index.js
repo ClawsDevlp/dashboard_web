@@ -15,7 +15,6 @@ export default {
     }, */
 
     getTreesFromApi: () => (state, actions) => {
-        console.log("/**** getTreesFromApi function ****/")
         const request = axios.get('https://opendata.paris.fr/api/records/1.0/search/?dataset=arbresremarquablesparis&facet=genre&facet=espece&facet=dateplantation&rows=182')
         //console.log("getTreesFromApi function")
         request.then(response => {
@@ -25,14 +24,12 @@ export default {
             .catch(error => { console.log(error) })
     }, 
     setTreeArray: rawtrees => (state, actions) => {
-        console.log("/**** setTreeArray function ****/")
         const onlyFields = rawtrees.map(x => x.fields)
         const recap = actions.setRecapArray(onlyFields)
         //console.log(onlyFields)
         return {...state, trees: onlyFields, recapArray: recap}
     },
     setRecapArray : (tree) => () => {
-        console.log("/**** setRecapArray function ****/")
         const recap = tree.map( newArray =>({
             species: newArray.espece,
             genre: newArray.genre,
@@ -44,6 +41,13 @@ export default {
         }))
         // console.log("recap array : ", recap)
         return recap
+    },
+    organiseBySpecies: () => (state) => {
+        console.log("/**** organiseBySpecies function ****/")
+        
+    },
+    organiseByAdress: () => () => {
+        console.log("/**** organiseByAdress function ****/")
     }
     /*
     ,
