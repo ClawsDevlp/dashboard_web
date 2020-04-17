@@ -43,7 +43,7 @@ export default {
 
         const nbCentree = onlyFields.filter(i => i.age >= 100).length
         const nbDeuxMille = onlyFields.filter(i => i.dateplantation >= "2000-01-01T00:09:21+00:00").length
-        
+        const nbTwoMeters = onlyFields.filter(i => i.hauteurenm >= 20).length 
 
         //return {...state, trees: cleanTree}
         console.log("setTreeArray function")

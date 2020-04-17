@@ -17,11 +17,6 @@ export default (state, actions) =>
             'div',
             { oncreate: () => actions.getTreesFromApi(), class : 'wrapper'},
             [
-                h('p', null,  '' + state.numberCentree + ' arbres de plus de 100 ans '),
-               
-                '' + state.numberDeuxMille + ' arbres remarquables plantés depuis 2000 ',
-                //'Liste district arbres :' + state.treesDistrict.nbTrees.slice(0,3),
-                '' + state.trees.length + ' arbres remarquables ',
             TopAge({
                 trees: state.trees
             }),  
@@ -45,6 +40,14 @@ export default (state, actions) =>
                     h('div', null, [
                         h('p', null,  state.numberDeuxMille ),
                         h('p', null, ' arbres remarquables plantés depuis 2000 ')
+                    ]),
+                    h('div', null, [
+                        h('p', null,  state.numberCentree ),
+                        h('p', null, ' arbres de plus de 100 ans ')
+                    ]),
+                    h('div', null, [
+                        h('p', null,  state.trees.filter(i => i.hauteurenm >= 20).length),
+                        h('p', null, ' arbres de plus de 20 mètres ')
                     ])
     
                 ])
