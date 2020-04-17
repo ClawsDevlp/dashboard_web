@@ -7,7 +7,11 @@ export default {
     } */
     count: 0,
     trees: [],
-    treesDistrict: []
+    districtData : {
+        distictName : [],
+        nbTrees: []
+    },
+    chart: {}
     /*,
     locationData : {
         locations : [],

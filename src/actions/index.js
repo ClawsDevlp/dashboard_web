@@ -14,23 +14,30 @@ export default {
         return { ...state, ip: ip } // on retourne le nouveau state en modifiant l'adresse ip dans notre state
     }, */
 
-    getTreesFromApi: () => (state, actions) => {
-        const request = axios.get('https://opendata.paris.fr/api/records/1.0/search/?dataset=arbresremarquablesparis&facet=genre&facet=espece&facet=dateplantation&rows=182')
+    getTreesFromApi: () => async (state, actions) => {
         console.log("getTreesFromApi function")
-        request.then(response => {
-            return actions.setTreeArray(response.data.records)
+        const request = await axios.get('https://opendata.paris.fr/api/records/1.0/search/?dataset=arbresremarquablesparis&facet=genre&facet=espece&facet=dateplantation&rows=182')
+        .then(response => {
+            return response.data.records
         })
             .catch(error => { console.log(error) })
+            console.log("request" , request)
+            const newState = actions.setTreeArray(request)
+            console.log("newstete" , newState)
+            state.chart.data.labels = newState.districtData.distictName
+            state.chart.data.datasets[0].data = newState.districtData.nbTrees
+            state.chart.update({duration: 800})
+            console.log(state.chart.data.datasets)
+            return newState
     },
     setTreeArray: rawtrees => (state, actions) => {
         const onlyFields = rawtrees.map(x => x.fields)
-
         const district = actions.setTreeByDistrictArray(onlyFields)
 
-        return {...state, trees: onlyFields, treesDistrict: district}
+        return {...state, trees: onlyFields, districtData: district}
     },
     // set treesDistrict with trees
-    setTreeByDistrictArray: trees => state => {
+    setTreeByDistrictArray: (trees) => state => {
         const treesByDistrict = trees.map(x => x.arrondissement)
 
         // Get occurences of trees by district
@@ -39,16 +46,13 @@ export default {
             return obj
         }, {})
 
-        // Get two arrays : district names and number of trees in these districts
-        const nbTrees = []
-        const distictName = []
-        for (let [key, value] of Object.entries(occTreesByDistrict)) {
-            //console.log(key, value)
-            nbTrees.push(value)
-            distictName.push(key)
-        }        
-
-        return { nbTrees, distictName }
+        return {
+            distictName: Object.keys(occTreesByDistrict), // je récupère un tableau représentant les categories
+            nbTrees:  Object.values(occTreesByDistrict) // et le nombre d'element dans chaque categories
+        }
+    },
+    saveChart: (c) => state => {
+        return {...state, chart: c}
     }
     /*
     getLocationTreeDataFromApi: ({count, callBack}) => (state, actions) => {
