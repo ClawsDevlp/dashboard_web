@@ -7,7 +7,8 @@ export default {
     } */
     count: 0,
     trees: [],
-    numberCentree: 0
+    numberCentree: 0,
+    numberDeuxMille : 0
     /*,
     locationData : {
         locations : [],

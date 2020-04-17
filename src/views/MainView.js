@@ -4,18 +4,29 @@ import { h } from 'hyperapp'
 // import BarChart from '../components/BarChart'
 import CleanTree from '../components/CleanTree'
 import TopCircumference from '../components/TopCircumference'
+import TopAge from '../components/TopAge'
 
 export default (state, actions) =>
     h('div', {}, [
         h('h1', {}, 'Essai affichage infos API'),
         h(
-            'p',
+            'div',
             { oncreate: () => actions.getTreesFromApi()},
-            'nombre centenaire : ' + state.numberCentree,
+            [
+                h('p', null,  '' + state.numberCentree + ' arbres de plus de 100 ans '),
+               
+                '' + state.numberDeuxMille + ' arbres remarquables plantés depuis 2000 ',
+                '' + state.trees.length + ' arbres remarquables ',
+                
             TopCircumference({
-                trees: state.trees,
+                trees: state.trees
                 //getAge: (date) => () => actions.calculateAge(date)
+            }),
+            TopAge({
+                trees: state.trees
             })
+            ]
+            
             //'Liste d\'arbres :' + state.trees.map( x => x.circonferenceencm)
             // arbres triés par ordre de circonférence
             //'Liste d\'arbres :' + state.trees.map( x => x.circonferenceencm).sort((a, b) => b - a).slice(0,3),
