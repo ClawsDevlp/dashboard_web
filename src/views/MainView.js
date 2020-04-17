@@ -38,11 +38,11 @@ export default (state, actions) =>
                         h('p', null, ' arbres remarquables ')
                     ]),
                     h('div', null, [
-                        h('p', null,  state.numberDeuxMille ),
+                        h('p', null,  state.trees.filter(i => i.dateplantation >= "2000-01-01T00:09:21+00:00").length),
                         h('p', null, ' arbres remarquables plantés depuis 2000 ')
                     ]),
                     h('div', null, [
-                        h('p', null,  state.numberCentree ),
+                        h('p', null,  state.trees.filter(i => i.age >= 100).length ),
                         h('p', null, ' arbres de plus de 100 ans ')
                     ]),
                     h('div', null, [

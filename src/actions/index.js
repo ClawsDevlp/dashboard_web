@@ -37,17 +37,13 @@ export default {
         onlyFields.forEach(
             
             (element) => {
-                //console.log(element.dateplantation) 
                 element.age = actions.calculateAge(new Date(element.dateplantation).getTime())}
-            )
-
-        const nbCentree = onlyFields.filter(i => i.age >= 100).length
-        const nbDeuxMille = onlyFields.filter(i => i.dateplantation >= "2000-01-01T00:09:21+00:00").length
-        const nbTwoMeters = onlyFields.filter(i => i.hauteurenm >= 20).length 
+        )
+        
 
         //return {...state, trees: cleanTree}
         console.log("setTreeArray function")
-        return {...state, trees: onlyFields, numberCentree: nbCentree, numberDeuxMille : nbDeuxMille}
+        return {...state, trees: onlyFields}
     },
     
  
