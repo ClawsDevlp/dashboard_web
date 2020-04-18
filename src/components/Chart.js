@@ -9,7 +9,7 @@ export default (props) =>
             oncreate: (element) => {
                 const ctx = element.getContext('2d')
                 const c = new Chart(ctx, {
-                    type: 'bar',
+                    type: props.type,
                     data: {
                         labels: props.labels,
                         datasets: [{

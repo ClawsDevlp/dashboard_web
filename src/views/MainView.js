@@ -1,33 +1,39 @@
 import { h } from 'hyperapp'
 
 // import Button from '../components/Button'
-import BarChart from '../components/BarChart'
+import Chart from '../components/Chart'
 
 export default (state, actions) =>
     h('div', {}, [
         h('h1', {}, 'Arbres fantastiques'),
         h(
             'p',
-            { oncreate: () => actions.getTreesFromApi() },
-            console.log("Data : " , state.districtData),
-            //'Liste district arbres :' + state.districtData.nbTrees,
+            { oncreate: () => actions.getTreesFromApi() }
         ),
 
-        BarChart({
+        // Bar Chart
+        Chart({
             labels: [],
             data:  [],
             title: 'Arbres par arrondissement',
+            type: 'bar',
             width: 800,
             height: 400,
-            callBack: (chart) => { // je défini ici une fonction de callback qui va être appellé après la création de mon diagramme
-                //const list = await state.districtData
-                //const disdis = actions.setTreeByDistrictArray(state.trees)
-                //console.log("Data 2 : " , disdis)
-                actions.saveChart(chart)
+            callBack: (chart) => {
+                actions.saveBarChart(chart)
+            }
+        }),
 
-                //chart.data.labels = state.districtData.distictName
-                //chart.data.datasets[0] = state.districtData.nbTrees
-                //chart.update({duration: 800})
+        // Line Chart
+        Chart({
+            labels: [],
+            data:  [],
+            title: 'Evolution de la population d\'arbres par années',
+            type: 'line',
+            width: 800,
+            height: 400,
+            callBack: (chart) => {
+                actions.saveLineChart(chart)
             }
         })
     ])
