@@ -9,8 +9,8 @@ export default (props) =>
             .slice(0,3)
             .map( type => h('li', {}, [
                 SpeciesList({
-                    name : type[0],
-                    value : type[1]
+                    name : type[0], // le nom de l'espèce
+                    value : type[1] // le nombre d'arbre de cette espèce
                    
                 })
                 

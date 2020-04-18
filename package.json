@@ -10,7 +10,7 @@
   "keywords": [
     "IMAC"
   ],
-  "author": "Enguerrand DE SMET",
+  "author": "Dashboard Team",
   "license": "ISC",
   "dependencies": {
     "@hyperapp/logger": "^0.5.0",
