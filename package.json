@@ -1,7 +1,7 @@
 {
-  "name": "hyperapptemplate",
+  "name": "remarquabletrees",
   "version": "1.0.0",
-  "description": "hyperApp template for IMACs students",
+  "description": "Remarquable tree website made with Hyperapp",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --color --mode development",

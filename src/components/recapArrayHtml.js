@@ -9,7 +9,7 @@ export default (array, actions) =>
         h('th', {scope: "col", onclick: actions.organiseByDistrict}, 'Arrondissement'),
         h('th', {scope: "col", onclick: actions.organiseByCirc}, 'Circonférence (en cm)'),
         h('th', {scope: "col", onclick: actions.organiseByHeight}, 'Hauteur (en m)'),
-        h('th', {scope: "col", onclick: actions.organiseByNumber}, 'Année de plantation')
+        h('th', {scope: "col", onclick: actions.organiseByDate}, 'Année de plantation')
     ]),
       OneLine(array) // Calling here the file that will create all the lines
   ])
