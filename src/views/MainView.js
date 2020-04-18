@@ -6,6 +6,7 @@ import TopCircumference from '../components/TopCircumference'
 import TopAge from '../components/TopAge'
 import TopHeight from '../components/TopHeight'
 import TopSpecies from '../components/TopSpecies'
+import Chart from '../components/Chart'
 
 export default (state, actions) =>
 
@@ -56,6 +57,32 @@ export default (state, actions) =>
                 ])
 
             ]),
+
+            // Bar Chart
+            Chart({
+                labels: [],
+                data:  [],
+                title: 'Arbres par arrondissement',
+                type: 'bar',
+                width: 800,
+                height: 400,
+                callBack: (chart) => {
+                    actions.saveBarChart(chart)
+                }
+            }),
+
+            // Line Chart
+            Chart({
+                labels: [],
+                data:  [],
+                title: 'Evolution de la population d\'arbres par années',
+                type: 'line',
+                width: 800,
+                height: 400,
+                callBack: (chart) => {
+                    actions.saveLineChart(chart)
+                }
+            }),
 
             h('div', {class: "container array"}, [
                 h('h3', {}, [
