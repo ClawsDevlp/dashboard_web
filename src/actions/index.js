@@ -12,7 +12,7 @@ export default {
         .catch(error => { console.log(error) })
     },
 
-    // je calcule l'age en fonction de la date actuelle 
+    // Calculate the age of the tree according to the current date 
     calculateAge: (dateplantation) => {
         const ageDifNow = Date.now() - dateplantation
         const ageDate = new Date(ageDifNow) 
@@ -25,7 +25,7 @@ export default {
         const onlyFields = rawtrees.map(x => x.fields)
         const recap = actions.setRecapArray(onlyFields)
         
-        // je rajoute une section age pour chaque arbre
+        // add an age section for each tree
         onlyFields.forEach(
             (element) => {
                 element.age = actions.calculateAge(new Date(element.dateplantation).getTime())}
@@ -36,6 +36,7 @@ export default {
         console.log("setTreeArray function")
         return {...state, trees: onlyFields,  recapArray: recap, speciesNumber: species }
     },
+
     // Function to set the organise array for the recap array section
     setRecapArray : (tree) => () => {
         const recap = tree.map( newArray =>({
@@ -49,6 +50,7 @@ export default {
         }))
         return recap
     },
+
     // Functions that reorganise the recap array depending on a category
     organiseBySpecies: () => (state) => {
         const sortedRecapArray = state.recapArray.sort((a, b) => a.species.localeCompare(b.species));
@@ -78,20 +80,20 @@ export default {
     setTreeBySpeciesArray: trees => state => {
         const speciesName = trees.map(x => x.espece)
 
-        // je compte le nombre d'arbres pour chaque espèce
+        // count the number of trees for each species
         const speciesCount = speciesName.reduce((obj, value) => {
             obj[value] = (obj[value] || 0) + 1
             return obj
         }, {})
 
         var speciesSort = []
-        // je rentre mes données trouvées dans un tableau
+        // enter my data found in a table
         for(var species in speciesCount)
         {
             speciesSort.push([species, speciesCount[species]])
         }
 
-        // je trie les espèces par rapport au nombres d'arbres par ordre décroissant
+        // sort the species by the number of trees in descending order
         speciesSort.sort((a,b) => b[1] - a[1])
         
 

@@ -1,6 +1,7 @@
 import { h } from 'hyperapp'
 import SpeciesList from './SpeciesList'
 
+// Creating a list of species sorted by the number of trees
 export default (props) =>
     h( 'div', { class : 'container top3'}, [
         h( 'h3', null, [h('span', null, '🏆 TOP 3'), '  Les espèces les plus importantes 🧗']),
