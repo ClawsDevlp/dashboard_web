@@ -6,6 +6,7 @@ import CleanTree from '../components/CleanTree'
 import TopCircumference from '../components/TopCircumference'
 import TopAge from '../components/TopAge'
 import TopHeight from '../components/TopHeight'
+import TopSpecies from '../components/TopSpecies'
 
 export default (state, actions) =>
     h('div', {}, [
@@ -17,6 +18,9 @@ export default (state, actions) =>
             'div',
             { oncreate: () => actions.getTreesFromApi(), class : 'wrapper'},
             [
+            TopSpecies({
+                species: state.speciesNumber
+            }),
             TopAge({
                 trees: state.trees
             }),  
@@ -36,6 +40,7 @@ export default (state, actions) =>
                     h('div', null, [
                         h('p', null,  state.trees.length ),
                         h('p', null, ' arbres remarquables ')
+                        //h('p', null, 'value : ' + state.especes.sort((a, b) => b.especeCount - a.especeCount).slice(0,3))
                     ]),
                     h('div', null, [
                         h('p', null,  state.trees.filter(i => i.dateplantation >= "2000-01-01T00:09:21+00:00").length),

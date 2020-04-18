@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 export default {
     /* increment: () => state => {
         console.log(state)
@@ -39,14 +40,37 @@ export default {
             (element) => {
                 element.age = actions.calculateAge(new Date(element.dateplantation).getTime())}
         )
-        
 
+        const species = actions.setTreeBySpeciesArray(onlyFields)
+
+        console.log('on y croit ', species)
+        console.log('premier element', species[0][0])
+      
+
+     
         //return {...state, trees: cleanTree}
         console.log("setTreeArray function")
-        return {...state, trees: onlyFields}
+        return {...state, trees: onlyFields,  speciesNumber: species }
     },
     
- 
+    setTreeBySpeciesArray: trees => state => {
+        const speciesName = trees.map(x => x.espece)
+        const speciesCount = speciesName.reduce((obj, value) => {
+            obj[value] = (obj[value] || 0) + 1
+            return obj
+        }, {})
+
+        var speciesSort = []
+        for(var species in speciesCount)
+        {
+            speciesSort.push([species, speciesCount[species]])
+        }
+
+        speciesSort.sort((a,b) => b[1] - a[1])
+        
+
+        return speciesSort
+    }
  
 
     //new Date(a.dateplantation).getTime()  - new Date(b.dateplantation).getTime()

@@ -16,7 +16,8 @@
     "@hyperapp/logger": "^0.5.0",
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
-    "hyperapp": "^1.2.10"
+    "hyperapp": "^1.2.10",
+    "sort-values": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
