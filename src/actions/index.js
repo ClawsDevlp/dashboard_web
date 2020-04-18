@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-export default {
-    // Function that will get the data from the API
+
 
 export default {
   
@@ -12,8 +11,6 @@ export default {
         })
         .catch(error => { console.log(error) })
     },
-    // Function to store the data in the state
-    setTreeArray: rawtrees => (state, actions) => {
 
     // je calcule l'age en fonction de la date actuelle 
     calculateAge: (dateplantation) => {
@@ -22,11 +19,11 @@ export default {
         return Math.abs(ageDate.getUTCFullYear() - 1970) 
     },
     
-    setTreeArray: rawtrees => (state,actions) => {
+    // Function to store the data in the state
+    setTreeArray: rawtrees => (state, actions) => {
+
         const onlyFields = rawtrees.map(x => x.fields)
         const recap = actions.setRecapArray(onlyFields)
-        return {...state, trees: onlyFields, recapArray: recap}
-        console.log("Only fields : " , onlyFields)
         
         // je rajoute une section age pour chaque arbre
         onlyFields.forEach(
@@ -37,7 +34,7 @@ export default {
         const species = actions.setTreeBySpeciesArray(onlyFields)
      
         console.log("setTreeArray function")
-        return {...state, trees: onlyFields,  speciesNumber: species }
+        return {...state, trees: onlyFields,  recapArray: recap, speciesNumber: species }
     },
     // Function to set the organise array for the recap array section
     setRecapArray : (tree) => () => {
@@ -76,7 +73,7 @@ export default {
     organiseByDate: () => (state) => {
         const sortedRecapArray = state.recapArray.sort((a, b) => a.date - b.date);
         return {...state, recapArray: sortedRecapArray}
-    }
+    },
     
     setTreeBySpeciesArray: trees => state => {
         const speciesName = trees.map(x => x.espece)
@@ -101,4 +98,5 @@ export default {
         return speciesSort
     }
  
+
 }

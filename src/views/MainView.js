@@ -2,20 +2,13 @@ import { h } from 'hyperapp'
 import htmlArray from '../components/recapArrayHtml'
 
 
-import CleanTree from '../components/CleanTree'
 import TopCircumference from '../components/TopCircumference'
 import TopAge from '../components/TopAge'
 import TopHeight from '../components/TopHeight'
 import TopSpecies from '../components/TopSpecies'
 
 export default (state, actions) =>
-    h('div', {oncreate: () => actions.getTreesFromApi()}, [
-        h('div', {class: "container array"}, [
-            h('h3', {}, [
-                h('span', {}, '📖 DATA'),
-                'Un petit récapitulatif 👀']),
-            htmlArray(state.recapArray, actions) // Calling the file to create the array
-        ])
+
     h('div', {}, [
         h('h1', {class : 'titre'}, [
             h('span', null, 'DATAVISUALISATION  '),
@@ -62,9 +55,17 @@ export default (state, actions) =>
     
                 ])
 
+            ]),
+
+            h('div', {class: "container array"}, [
+                h('h3', {}, [
+                    h('span', {}, '📖 DATA'),
+                    'Un petit récapitulatif 👀']),
+                htmlArray(state.recapArray, actions) // Calling the file to create the array
             ])
             
             ]
+
             
         )
         
