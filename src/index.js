@@ -5,7 +5,7 @@ import state from './state/index'
 import view from './views/MainView.js'
 import actions from './actions'
 
-import './css/main.scss' // load scss but you can use also classic css file
+import './css/styles.css'
 
 withLogger(app)( // start hyperapp
     state,

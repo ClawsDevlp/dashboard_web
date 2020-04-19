@@ -1,6 +1,9 @@
 import { h } from 'hyperapp'
 import Chart from 'chart.js'
 
+Chart.defaults.global.defaultFontFamily = "Ubuntu";
+Chart.defaults.global.defaultFontColor = "rgb(90, 193, 143)";
+
 export default (props) =>
     h('div', {}, [
         h('canvas', {
@@ -12,8 +15,14 @@ export default (props) =>
                         labels: props.labels,
                         datasets: [{
                             label: props.title || 'default title',
+                            backgroundColor: 'rgba(90, 193, 143, 0.8)',
                             data: props.data
                         }]
+                    },
+                    options: {
+                        legend: {
+                            display: false,
+                        }
                     },
                     responsive: true
                 })

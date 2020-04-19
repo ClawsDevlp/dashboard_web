@@ -34,7 +34,7 @@ export default (state, actions) =>
             h('div', {class : 'container infos'}, [
                 h('h3', null, [
                     h('span', null, ' 📌  INFOS '),
-                    'Les chiffres impressionnants 😱'
+                    'Les chiffres impressionnants 😱'
                 ]),
                 h('div', {class: 'inside-wrapper'}, [
                     h('div', null, [
@@ -58,37 +58,44 @@ export default (state, actions) =>
 
             ]),
 
-            // Bar Chart
-            Chart({
+            h('div', {class: "container bar"}, [
+                h('h3', {}, [
+                    h('span', {}, '📊  DATA'),
+                    'Le nombre d’arbres par arrondissements 🌎']),
+                Chart({
                 labels: [],
                 data:  [],
                 title: 'Arbres par arrondissement',
                 type: 'bar',
-                width: 800,
-                height: 400,
                 callBack: (chart) => {
                     actions.saveBarChart(chart)
                 }
-            }),
+            })
+            ]),
 
-            // Line Chart
+            h('div', {class: "container courbe"}, [
+                h('h3', {}, [
+                    h('span', {}, '📈  DATA'),
+                    'Le nombre d’arbres par année 📅']),
             Chart({
                 labels: [],
                 data:  [],
                 title: 'Evolution de la population d\'arbres par années',
                 type: 'line',
-                width: 800,
-                height: 400,
                 callBack: (chart) => {
                     actions.saveLineChart(chart)
                 }
-            }),
+            })
+            ]),
 
             h('div', {class: "container array"}, [
                 h('h3', {}, [
                     h('span', {}, '📖 DATA'),
-                    'Un petit récapitulatif 👀']),
+                    'Un petit récapitulatif 👀']),
                 htmlArray(state.recapArray, actions) // Calling the file to create the array
+            ]),
+
+            h('p', {class: "coded"}, [ ' "réalisé avec 💚 par Bastien, Clara, Elisa, Lucie et Roxane" '
             ])
             
             ]
