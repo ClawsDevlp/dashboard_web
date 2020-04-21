@@ -57,30 +57,14 @@ export default {
         }))
         return recap
     },
-
-    // Functions that reorganise the recap array depending on a category
-    organiseBySpecies: () => (state) => {
-        const sortedRecapArray = state.recapArray.sort((a, b) => a.species.localeCompare(b.species));
+    // Function that reorganises the recap array with increasing numbers (circumference, height, year of plantation)
+    organiseByNumber: (category) => (state) => {
+        const sortedRecapArray = state.recapArray.sort((a, b) => a[category] - b[category]);
         return {...state, recapArray: sortedRecapArray}
     },
-    organiseByAdress: () => (state) => {
-        const sortedRecapArray = state.recapArray.sort((a, b) => a.adress.localeCompare(b.adress));
-        return {...state, recapArray: sortedRecapArray}
-    },
-    organiseByDistrict: () => (state) => {
-        const sortedRecapArray = state.recapArray.sort((a, b) => a.district.localeCompare(b.district));
-        return {...state, recapArray: sortedRecapArray}
-    },
-    organiseByCirc: () => (state) => {
-        const sortedRecapArray = state.recapArray.sort((a, b) => a.circumference - b.circumference);
-        return {...state, recapArray: sortedRecapArray}
-    },
-    organiseByHeight: () => (state) => {
-        const sortedRecapArray = state.recapArray.sort((a, b) => a.height - b.height);
-        return {...state, recapArray: sortedRecapArray}
-    },
-    organiseByDate: () => (state) => {
-        const sortedRecapArray = state.recapArray.sort((a, b) => a.date - b.date);
+    // Function that reorganises the recap array depending of the alphabetical order of a category (adress, species, district)
+    organiseByString: (category) => (state) => {
+        const sortedRecapArray = state.recapArray.sort((a, b) => a[category].localeCompare(b[category]));
         return {...state, recapArray: sortedRecapArray}
     },
     

@@ -4,12 +4,12 @@ import OneLine from '../components/oneLineRecap'
 export default (array, actions) => 
   h('table', {id: 'small_recap'}, [
     h('tr', null, [
-        h('th', {scope: "col", onclick: actions.organiseBySpecies}, 'Espèce'),
-        h('th', {scope: "col", onclick: actions.organiseByAdress}, 'Adresse'),
-        h('th', {scope: "col", onclick: actions.organiseByDistrict}, 'Arrondissement'),
-        h('th', {scope: "col", onclick: actions.organiseByCirc}, 'Circonférence (en cm)'),
-        h('th', {scope: "col", onclick: actions.organiseByHeight}, 'Hauteur (en m)'),
-        h('th', {scope: "col", onclick: actions.organiseByDate}, 'Année de plantation')
+        h('th', {scope: "col", onclick: () => actions.organiseByString("species")}, 'Espèce'),
+        h('th', {scope: "col", onclick: () => actions.organiseByString("adress")}, 'Adresse'),
+        h('th', {scope: "col", onclick: () => actions.organiseByString("district")}, 'Arrondissement'),
+        h('th', {scope: "col", onclick: () => actions.organiseByNumber("circumference")}, 'Circonférence (en cm)'),
+        h('th', {scope: "col", onclick: () => actions.organiseByNumber("height")}, 'Hauteur (en m)'),
+        h('th', {scope: "col", onclick: () => actions.organiseByNumber("date")}, 'Année de plantation')
     ]),
       OneLine(array) // Calling here the file that will create all the lines
   ])
